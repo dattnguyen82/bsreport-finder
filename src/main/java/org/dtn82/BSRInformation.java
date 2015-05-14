@@ -3,6 +3,7 @@ package org.dtn82;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by 212391398 on 5/13/15.
  */
+@Document(collection = "bsr_info")
 public class BSRInformation {
 
         @Id
