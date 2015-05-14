@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Date;
 
 @RestController
 public class ResultsController {
@@ -52,7 +51,7 @@ public class ResultsController {
 
         BSRInformation bsrInformation = new BSRInformation();
 
-        bsrInformation.setDate(new Date(System.currentTimeMillis()));
+        bsrInformation.setDate("2015-05-01");
         bsrInformation.setId("Test ID");
         bsrInformation.setInfo("Test Info");
         bsrInformation.setLink("Test Link");
