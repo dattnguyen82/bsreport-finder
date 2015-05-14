@@ -57,6 +57,7 @@ public class ResultsController {
         bsrInformation.setInfo("Test Info");
         bsrInformation.setLink("Test Link");
 
+        bsrInformationRepository.save(bsrInformation);
 
         System.out.println("FindAll():");
         System.out.println("-------------------------------");
