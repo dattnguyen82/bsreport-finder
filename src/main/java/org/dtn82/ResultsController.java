@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Date;
 
 @RestController
 public class ResultsController {
@@ -44,5 +45,32 @@ public class ResultsController {
 
         return new ResponseEntity<List<BSRInformation>>(list, new HttpHeaders(), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    public ResponseEntity<List<BSRInformation>> save()
+    {
+
+        BSRInformation bsrInformation = new BSRInformation();
+
+        bsrInformation.setDate(new Date(System.currentTimeMillis()));
+        bsrInformation.setId("Test ID");
+        bsrInformation.setInfo("Test Info");
+        bsrInformation.setLink("Test Link");
+
+
+        System.out.println("FindAll():");
+        System.out.println("-------------------------------");
+        List<BSRInformation> list =  bsrInformationRepository.findAll();
+
+        System.out.println("Count: " + list.size());
+
+        for (BSRInformation info : list) {
+            System.out.println(info.toJson());
+        }
+        System.out.println();
+
+        return new ResponseEntity<List<BSRInformation>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
 
 }
