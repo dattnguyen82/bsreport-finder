@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.List;
+
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -28,10 +30,15 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception
     {
+
         // fetch all customers
         System.out.println("FindAll():");
         System.out.println("-------------------------------");
-        for (BSRInformation info : bsrInformationRepository.findAll()) {
+        List<BSRInformation> list =  bsrInformationRepository.findAll();
+
+        System.out.println("Count: " + list.size());
+
+        for (BSRInformation info : list) {
             System.out.println(info.toJson());
         }
         System.out.println();
