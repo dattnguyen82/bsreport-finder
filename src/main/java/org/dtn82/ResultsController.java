@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,15 +36,9 @@ public class ResultsController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public ResponseEntity<List<BSRInformation>> get(@RequestParam(value = "keys") String keys)
     {
+        keys = keys.replaceAll("\\s+", "");
 
-        String[] splitKeys = keys.split(",");
-
-        ArrayList<String> tokens = new ArrayList<String>();
-
-        for (String key : splitKeys)
-        {
-            tokens.add(key);
-        }
+        String[] tokens = keys.split(",");
 
         List<BSRInformation> list =  bsrInformationRepository.findByTokens(tokens);
         return new ResponseEntity<List<BSRInformation>>(list, new HttpHeaders(), HttpStatus.OK);
