@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class BSRInformation {
         private String id;
         private String link;
         private String info;
-        private Date date;
+        private String date;
         private List<String> tokens;
 
         public String getId() {
@@ -45,11 +44,11 @@ public class BSRInformation {
             this.info = info;
         }
 
-        public Date getDate() {
+        public String getDate() {
             return date;
         }
 
-        public void setDate(Date date) {
+        public void setDate(String date) {
             this.date = date;
         }
 
