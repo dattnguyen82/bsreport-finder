@@ -36,6 +36,7 @@ public class ResultsController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public ResponseEntity<List<BSRInformation>> get(@RequestParam(value = "keys") String keys)
     {
+        keys = keys.toLowerCase();
         keys = keys.replaceAll("\\s+", "");
 
         String[] tokens = keys.split(",");
