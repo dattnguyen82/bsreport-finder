@@ -5,10 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,49 +28,34 @@ public class ResultsController {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<List<BSRInformation>> all()
+      public ResponseEntity<List<BSRInformation>> all()
     {
-        System.out.println("FindAll():");
-        System.out.println("-------------------------------");
         List<BSRInformation> list =  bsrInformationRepository.findAll();
-
-        System.out.println("Count: " + list.size());
-
-        for (BSRInformation info : list) {
-            System.out.println(info.toJson());
-        }
-        System.out.println();
-
         return new ResponseEntity<List<BSRInformation>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
-    public ResponseEntity<List<BSRInformation>> save()
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public ResponseEntity<List<BSRInformation>> get(@RequestParam(value = "keys") String keys)
     {
 
-        BSRInformation bsrInformation = new BSRInformation();
+        String[] splitKeys = keys.split(",");
 
-        bsrInformation.setDate("2015-05-01");
-        bsrInformation.setId("Test ID");
-        bsrInformation.setInfo("Test Info");
-        bsrInformation.setLink("Test Link");
+        ArrayList<String> tokens = new ArrayList<String>();
 
-        System.out.println(bsrInformation.toJson());
-
-        bsrInformationRepository.save(bsrInformation);
-
-        System.out.println("FindAll():");
-        System.out.println("-------------------------------");
-        List<BSRInformation> list =  bsrInformationRepository.findAll();
-
-        System.out.println("Count: " + list.size());
-
-        for (BSRInformation info : list) {
-            System.out.println(info.toJson());
+        for (String key : splitKeys)
+        {
+            tokens.add(key);
         }
-        System.out.println();
 
+        List<BSRInformation> list =  bsrInformationRepository.findByTokens(tokens);
         return new ResponseEntity<List<BSRInformation>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ResponseEntity<BSRInformation> save(@RequestBody BSRInformation input)
+    {
+        bsrInformationRepository.save(input);
+        return new ResponseEntity<BSRInformation>(input, new HttpHeaders(), HttpStatus.OK);
     }
 
 
