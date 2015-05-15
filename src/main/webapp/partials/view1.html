@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-m-4">
+            <label><small>From Date: </small></label><input type="text" placeholder="optional" class="form-control"><br>
+        </div>
+        <div class="col-xs-4 col-m-4">
+            <label><small>To Date: </small></label><input type="text" placeholder="optional" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-m-8">
+            <label><small>Words: </small></label><input type="text" class="form-control" ng-model="keywords" placeholder="Separate key words by comma e.g. Bill, Simmons, ..."><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-m-2">
+            <button class="btn btn-primary btn-sm" type="submit" ng-click="find_by_keywords()">
+                <img src="img/ajax-loader-mini.gif" ng-show="search_in_progress==true">
+                <span ng-show="search_in_progress==false" ng-disabled="search_in_progress==true">Search</span>
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <table data-height="150" data-click-to-select="true" class="table table-hover table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th data-field="state" data-align="center">Date</th>
+                    <th data-field="id" data-align="left">Description</th>
+                    <th data-field="name" data-align="right">Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="bsr_object in bsr_objects">
+                    <td>{{bsr_object.date}}</td>
+                    <td>{{bsr_object.info}}</td>
+                    <td><a href="{{bsr_object.link}}">{{bsr_object.link}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
