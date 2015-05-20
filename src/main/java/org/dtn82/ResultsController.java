@@ -18,13 +18,13 @@ public class ResultsController {
     BSRInformationRepository bsrInformationRepository;
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<String> index()
-    {
-        String message = "BS Report Finder" ;
-
-        return new ResponseEntity<String>(message, new HttpHeaders(), HttpStatus.OK);
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public ResponseEntity<String> index()
+//    {
+//        String message = "BS Report Finder" ;
+//
+//        return new ResponseEntity<String>(message, new HttpHeaders(), HttpStatus.OK);
+//    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
       public ResponseEntity<List<BSRInformation>> all()

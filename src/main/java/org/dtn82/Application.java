@@ -1,16 +1,14 @@
 package org.dtn82;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 
 
 @SpringBootApplication
-public class Application  {
-
-    @Autowired
-    BSRInformationRepository bsrInformationRepository;
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
 
@@ -23,4 +21,11 @@ public class Application  {
 
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
     }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
+
+
 }
