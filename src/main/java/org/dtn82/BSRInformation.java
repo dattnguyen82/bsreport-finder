@@ -4,7 +4,9 @@ package org.dtn82;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -17,7 +19,8 @@ public class BSRInformation {
         private String id;
         private String link;
         private String info;
-        private String date;
+        @DateTimeFormat(style = "yyyy-M-dd")
+        private Date date;
         private List<String> tokens;
 
         public String getId() {
@@ -44,11 +47,11 @@ public class BSRInformation {
             this.info = info;
         }
 
-        public String getDate() {
+        public Date getDate() {
             return date;
         }
 
-        public void setDate(String date) {
+        public void setDate(Date date) {
             this.date = date;
         }
 
