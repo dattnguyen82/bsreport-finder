@@ -52,7 +52,7 @@ public class ResultsController {
         {
             keys = keys.toLowerCase();
             keys = keys.replaceAll("\\s+", "");
-            tokens = keys.replaceAll(",", "/i|");
+            tokens = keys.replaceAll(",", "|");
             tokens += "/i";
         }
         else
