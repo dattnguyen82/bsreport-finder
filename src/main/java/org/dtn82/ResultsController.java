@@ -88,6 +88,8 @@ public class ResultsController {
 
         System.out.println(end_date.toString());
 
+        System.out.println(tokens);
+
         List<BSRInformation> list = bsrInformationRepository.get(tokens, start_date, end_date);
 
 
