@@ -19,6 +19,6 @@ public interface BSRInformationRepository extends MongoRepository<BSRInformation
     public List<BSRInformation> findByInfo(String pattern);
 
     //@Query("{ 'info' : { $regex : ?0 } }")
-    @Query("{ 'info' : { $regex : ?0 }, 'date' : {'$gte' : ?1} }")
+    @Query("{ 'info' : { $regex : ?0 }, 'date' : {'$gte' : '2015-01-01', '$lte' : '2015-05-01'} }")
     public List<BSRInformation> get(String pattern, Date start, Date End);
 }
