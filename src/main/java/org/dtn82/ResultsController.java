@@ -52,7 +52,8 @@ public class ResultsController {
         {
             keys = keys.toLowerCase();
             keys = keys.replaceAll("\\s+", "");
-            tokens = keys.replaceAll(",", "|");
+            tokens = keys.replaceAll(",", "/i|");
+            tokens += "/i";
         }
         else
         {
@@ -87,24 +88,18 @@ public class ResultsController {
         }
 
         String startDateString = sdf.format(start_date);
-
         String endDateString = sdf.format(end_date);
 
-
-
         System.out.println(startDateString);
-
         System.out.println(endDateString);
-
         System.out.println(tokens);
 
         List<BSRInformation> list = bsrInformationRepository.get(tokens, startDateString, endDateString);
 
-
-        for (BSRInformation l : list)
-        {
-            System.out.println(l.toString()) ;
-        }
+//        for (BSRInformation l : list)
+//        {
+//            System.out.println(l.toString()) ;
+//        }
 
         return new ResponseEntity<List<BSRInformation>>(list, new HttpHeaders(), HttpStatus.OK);
     }
