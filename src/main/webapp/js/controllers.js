@@ -8,13 +8,17 @@ angular.module('myApp.controllers', [])
       $scope.search_in_progress = false;
       $scope.bsr_objects = [];
 
-      $scope.find_by_keywords = function()
+        $scope.start_date = "2007-01-01";
+
+        $scope.end_date = "2015-06-01";
+
+        $scope.find_by_keywords = function()
       {
         setTimeout(function ()
         {
             $scope.search_in_progress = true;
             $scope.bsr_objects = [];
-            myAppServices.find_by_keywords($scope.keywords)
+            myAppServices.find($scope.keywords, $scope.start_date, $scope.end_date)
                 .success(function (response)
                 {
                     for (var key in response) {
