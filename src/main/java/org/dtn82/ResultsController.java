@@ -18,6 +18,8 @@ public class ResultsController {
 
 	private org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
+    private final String dateFormat = "yyyy-M-dd";
+
     @Autowired
     BSRInformationRepository bsrInformationRepository;
 
@@ -41,7 +43,7 @@ public class ResultsController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public ResponseEntity<List<BSRInformation>> get(@RequestParam(value = "keys", required = false) String keys, @RequestParam(value = "start_date", required = false) String start, @RequestParam(value = "end_date", required = false) String end)
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
         String tokens = null;
         Date start_date = null;
         Date end_date = null;
@@ -65,7 +67,7 @@ public class ResultsController {
         else
         {
             try {
-                start_date = dateFormat.parse(start);
+                start_date = sdf.parse(start);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -78,19 +80,25 @@ public class ResultsController {
         else
         {
             try {
-                end_date = dateFormat.parse(end);
+                end_date = sdf.parse(end);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
 
-        System.out.println(start_date.toString());
+        String startDateString = sdf.format(start_date);
 
-        System.out.println(end_date.toString());
+        String endDateString = sdf.format(end_date);
+
+
+
+        System.out.println(startDateString);
+
+        System.out.println(endDateString);
 
         System.out.println(tokens);
 
-        List<BSRInformation> list = bsrInformationRepository.get(tokens, start_date, end_date);
+        List<BSRInformation> list = bsrInformationRepository.get(tokens, startDateString, endDateString);
 
 
         for (BSRInformation l : list)

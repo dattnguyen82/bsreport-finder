@@ -3,7 +3,6 @@ package org.dtn82;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,5 +19,5 @@ public interface BSRInformationRepository extends MongoRepository<BSRInformation
 
     //@Query("{ 'info' : { $regex : ?0 } }")
     @Query("{ 'info' : { $regex : ?0 }, 'date' : {'$gte' : '2015-01-01', '$lte' : '2015-05-01'} }")
-    public List<BSRInformation> get(String pattern, Date start, Date End);
+    public List<BSRInformation> get(String pattern, String start, String End);
 }
