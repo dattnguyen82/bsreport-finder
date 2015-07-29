@@ -2,10 +2,14 @@ package org.dtn82;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,16 +26,6 @@ public class ResultsController {
 
     @Autowired
     BSRInformationRepository bsrInformationRepository;
-
-
-
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public ResponseEntity<String> index()
-//    {
-//        String message = "BS Report Finder" ;
-//
-//        return new ResponseEntity<String>(message, new HttpHeaders(), HttpStatus.OK);
-//    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
       public ResponseEntity<List<BSRInformation>> all()
@@ -94,7 +88,7 @@ public class ResultsController {
         System.out.println(endDateString);
         System.out.println(tokens);
 
-        List<BSRInformation> list = bsrInformationRepository.get(tokens, startDateString, endDateString);
+        List<BSRInformation> list = bsrInformationRepository.get(tokens, startDateString, endDateString, new Sort(Sort.Direction.ASC, "date"));
 
 //        for (BSRInformation l : list)
 //        {
@@ -104,12 +98,12 @@ public class ResultsController {
         return new ResponseEntity<List<BSRInformation>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<BSRInformation> save(@RequestBody BSRInformation input)
-    {
-        bsrInformationRepository.save(input);
-        return new ResponseEntity<BSRInformation>(input, new HttpHeaders(), HttpStatus.OK);
-    }
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+//    public ResponseEntity<BSRInformation> save(@RequestBody BSRInformation input)
+//    {
+//        bsrInformationRepository.save(input);
+//        return new ResponseEntity<BSRInformation>(input, new HttpHeaders(), HttpStatus.OK);
+//    }
 
 
 }
