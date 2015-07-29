@@ -19,7 +19,7 @@ public class BSRInformation {
         private String id;
         private String link;
         private String info;
-        @DateTimeFormat(style = "yyyy-M-dd")
+        @DateTimeFormat(style = "yyyy-MM-dd")
         private Date date;
         private List<String> tokens;
 

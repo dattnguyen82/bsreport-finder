@@ -22,7 +22,7 @@ public class ResultsController {
 
 	private org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private final String dateFormat = "yyyy-M-dd";
+    private final String dateFormat = "yyyy-MM-dd";
 
     @Autowired
     BSRInformationRepository bsrInformationRepository;
