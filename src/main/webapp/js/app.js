@@ -9,7 +9,7 @@ angular.module('myApp', [
     'myApp.config'
 ]).
 config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/', {templateUrl: 'partials/view1.html', controller: 'appController', public: true})
+        $routeProvider.when('/', {templateUrl: 'index2.html', controller: 'appController', public: true})
         .otherwise({redirectTo: '/'});
 }]).
 run(function($rootScope, $http) {
